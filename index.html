@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>Employee Management System</h1>
+                <div class="header-actions">
+                    <span id="userInfo" class="user-info"></span>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#" data-section="dashboard" class="nav-link active">Dashboard</a></li>
+                        <li><a href="#" data-section="employees" class="nav-link">Employees</a></li>
+                        <li><a href="#" data-section="add-employee" class="nav-link">Add Employee</a></li>
+                        <li><a href="#" data-section="reports" class="nav-link">Reports</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <h2>Dashboard</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3 id="totalEmployees">0</h3>
+                            <p>Total Employees</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="totalDepartments">0</h3>
+                            <p>Departments</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="totalPositions">0</h3>
+                            <p>Positions</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="averageSalary">$0</h3>
+                            <p>Average Salary</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Employees Section -->
+                <section id="employees" class="content-section">
+                    <div class="section-header">
+                        <h2>Employees</h2>
+                        <div class="section-actions">
+                            <button id="exportBtn" class="btn btn-secondary">Export CSV</button>
+                            <button id="importBtn" class="btn btn-secondary">Import CSV</button>
+                            <input type="file" id="importFile" accept=".csv" style="display: none;">
+                        </div>
+                    </div>
+
+                    <!-- Search and Filter -->
+                    <div class="search-filter-bar">
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="Search employees...">
+                            <button id="searchBtn" class="btn btn-primary">Search</button>
+                        </div>
+                        <div class="filter-controls">
+                            <select id="departmentFilter">
+                                <option value="">All Departments</option>
+                            </select>
+                            <select id="positionFilter">
+                                <option value="">All Positions</option>
+                            </select>
+                            <input type="number" id="minSalary" placeholder="Min Salary">
+                            <input type="number" id="maxSalary" placeholder="Max Salary">
+                            <button id="filterBtn" class="btn btn-secondary">Filter</button>
+                            <button id="clearFiltersBtn" class="btn btn-outline">Clear</button>
+                        </div>
+                    </div>
+
+                    <!-- Employee Table -->
+                    <div class="table-container">
+                        <table id="employeeTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Photo</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>Position</th>
+                                    <th>Salary</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeeTableBody">
+                                <!-- Employee rows will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button id="prevPageBtn" class="btn btn-outline">Previous</button>
+                        <span id="pageInfo">Page 1 of 1</span>
+                        <button id="nextPageBtn" class="btn btn-outline">Next</button>
+                    </div>
+                </section>
+
+                <!-- Add Employee Section -->
+                <section id="add-employee" class="content-section">
+                    <h2>Add New Employee</h2>
+                    <form id="addEmployeeForm" class="employee-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <input type="text" id="department" name="department">
+                            </div>
+                            <div class="form-group">
+                                <label for="position">Position</label>
+                                <input type="text" id="position" name="position">
+                            </div>
+                            <div class="form-group">
+                                <label for="salary">Salary</label>
+                                <input type="number" id="salary" name="salary" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label for="hireDate">Hire Date</label>
+                                <input type="date" id="hireDate" name="hireDate">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="profilePhoto">Profile Photo</label>
+                                <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Add Employee</button>
+                            <button type="reset" class="btn btn-outline">Reset</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Reports Section -->
+                <section id="reports" class="content-section">
+                    <h2>Reports</h2>
+                    <div class="reports-grid">
+                        <div class="report-card">
+                            <h3>Department Summary</h3>
+                            <div id="departmentChart" class="chart-container">
+                                <!-- Department statistics will be displayed here -->
+                            </div>
+                        </div>
+                        <div class="report-card">
+                            <h3>Salary Distribution</h3>
+                            <div id="salaryChart" class="chart-container">
+                                <!-- Salary statistics will be displayed here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Employee Modal -->
+    <div id="employeeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Employee Details</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editEmployeeForm" class="employee-form">
+                    <input type="hidden" id="editEmployeeId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editFirstName">First Name *</label>
+                            <input type="text" id="editFirstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editLastName">Last Name *</label>
+                            <input type="text" id="editLastName" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Email *</label>
+                            <input type="email" id="editEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPhone">Phone</label>
+                            <input type="tel" id="editPhone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="editDepartment">Department</label>
+                            <input type="text" id="editDepartment" name="department">
+                        </div>
+                        <div class="form-group">
+                            <label for="editPosition">Position</label>
+                            <input type="text" id="editPosition" name="position">
+                        </div>
+                        <div class="form-group">
+                            <label for="editSalary">Salary</label>
+                            <input type="number" id="editSalary" name="salary" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="editHireDate">Hire Date</label>
+                            <input type="date" id="editHireDate" name="hireDate">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Update Employee</button>
+                        <button type="button" class="btn btn-outline modal-close">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/employee.js"></script>
+</body>
+</html>

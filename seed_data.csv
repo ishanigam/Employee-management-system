@@ -1,0 +1,11 @@
+ID,First Name,Last Name,Email,Phone,Department,Position,Salary,Hire Date,Profile Photo,Active
+1,"John","Doe","john.doe@company.com","555-0101","Engineering","Software Engineer",75000,"2022-01-15","",true
+2,"Jane","Smith","jane.smith@company.com","555-0102","Marketing","Marketing Manager",68000,"2021-03-22","",true
+3,"Michael","Johnson","michael.johnson@company.com","555-0103","Sales","Sales Representative",52000,"2023-02-10","",true
+4,"Emily","Brown","emily.brown@company.com","555-0104","HR","HR Specialist",58000,"2022-07-08","",true
+5,"David","Wilson","david.wilson@company.com","555-0105","Engineering","Senior Software Engineer",95000,"2020-11-30","",true
+6,"Sarah","Davis","sarah.davis@company.com","555-0106","Finance","Financial Analyst",62000,"2022-09-14","",true
+7,"Robert","Miller","robert.miller@company.com","555-0107","Operations","Operations Manager",78000,"2021-12-05","",true
+8,"Lisa","Garcia","lisa.garcia@company.com","555-0108","Marketing","Content Specialist",48000,"2023-04-18","",true
+9,"James","Martinez","james.martinez@company.com","555-0109","Engineering","DevOps Engineer",82000,"2022-05-25","",true
+10,"Amanda","Taylor","amanda.taylor@company.com","555-0110","Sales","Sales Manager",85000,"2021-08-12","",true
